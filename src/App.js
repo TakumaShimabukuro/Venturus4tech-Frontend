@@ -1,12 +1,20 @@
 import React from 'react';
 import './App.css';
-import Login from "./containers/login/login"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+
+import SignUpAndlogin from "./containers/SignUpAndLogin/SignUpAndLogin"
+import Timeline from "./containers/Timeline/Timeline"
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
-      <Login name="Takuma" age="20"/>
-    </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={SignUpAndlogin} />
+          <PrivateRoute path="/timeline" component={Timeline} />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
   );
 }
 
